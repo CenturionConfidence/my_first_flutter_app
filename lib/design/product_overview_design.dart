@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/provider/carts_provider.dart';
 import 'package:quiz_app/provider/products.dart';
 import 'package:quiz_app/screens/product_detail_screen.dart';
 
@@ -9,6 +10,7 @@ class ProductDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
+    final cart = Provider.of<CartList>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -29,7 +31,9 @@ class ProductDesign extends StatelessWidget {
           backgroundColor: Colors.black87,
           title: Text(product.title),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product.id, product.title, product.price);
+            },
             icon: const Icon(
               Icons.shopping_cart,
               color: Colors.red,
@@ -49,7 +53,7 @@ class ProductDesign extends StatelessWidget {
           title: Container(
             alignment: Alignment.topRight,
             child: Chip(
-              label: Text('\$$product.price'),
+              label: Text('\$${product.price}'),
             ),
           ),
         ),

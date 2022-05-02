@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/design/cart_badge.dart';
+import 'package:quiz_app/main_drawer.dart';
+import 'package:quiz_app/provider/carts_provider.dart';
 import '../design/product_overview_design.dart';
 import '../provider/products.dart';
+import '../screens/cart_screen.dart';
 
 enum FilterOptions {
   favorites,
@@ -19,6 +23,23 @@ class ProductOverviewScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My App'),
         actions: [
+          Consumer<CartList>(
+            builder: (context, cart, child) => Badge(
+              child: IconButton(
+                icon: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    CartScreen.routeName,
+                  );
+                },
+              ),
+              value: cart.itemCount.toString(),
+              color: Colors.red,
+            ),
+          ),
           PopupMenuButton(
             itemBuilder: (_) => [
               const PopupMenuItem(
@@ -41,6 +62,7 @@ class ProductOverviewScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const MainDrawer(),
       body: Consumer(
         builder: (ctx, productData, _) => Padding(
           padding: const EdgeInsets.all(8),
