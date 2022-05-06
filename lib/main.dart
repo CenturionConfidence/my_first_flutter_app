@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_app/design/order_screen_design.dart';
 import 'package:quiz_app/provider/carts_provider.dart';
 import 'package:quiz_app/provider/order_provider.dart';
 import 'package:quiz_app/provider/products.dart';

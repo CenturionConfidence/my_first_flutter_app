@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/provider/order_provider.dart';
-import 'package:quiz_app/screens/order_screen.dart';
 
 import '../provider/carts_provider.dart';
 import '../design/cart_design.dart' as cartItem;

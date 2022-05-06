@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/provider/products.dart';
 
 import 'carts_provider.dart';
 
