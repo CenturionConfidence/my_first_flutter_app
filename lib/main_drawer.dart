@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/manage_product_screen.dart';
 import 'package:quiz_app/screens/order_screen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -9,15 +10,9 @@ class MainDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          Container(
-            color: Theme.of(context).colorScheme.primary,
-            child: const UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
-                child: Text('C'),
-              ),
-              accountName: Text('Spurtel Corp'),
-              accountEmail: Text('centurionconfidence@gmail.com'),
-            ),
+          AppBar(
+            title: const Text('Menu'),
+            automaticallyImplyLeading: false,
           ),
           Padding(
             padding: const EdgeInsets.all(10),
@@ -38,9 +33,13 @@ class MainDrawer extends StatelessWidget {
                         .pushReplacementNamed(OrderScreen.routeName);
                   },
                 ),
-                const ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
+                ListTile(
+                  leading: const Icon(Icons.edit),
+                  title: const Text('Manage Products'),
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(ManageProduct.routeName);
+                  },
                 ),
               ],
             ),

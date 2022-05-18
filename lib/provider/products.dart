@@ -31,7 +31,7 @@ class ProductList with ChangeNotifier {
       price: 29.99,
       description: 'Product of the new shop',
       imageUrl:
-          'https://media.glamour.com/photos/612d33b2e274243a3defbc8b/master/w_3200,h_1800,c_limit/best%20tiny%20bags.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK-g4jeOEmt0BailpIBN2__XjCpr27wxk4IQ&usqp=CAU',
     ),
     Product(
       id: 'c2',
@@ -47,7 +47,7 @@ class ProductList with ChangeNotifier {
       price: 29.99,
       description: 'Product of the new shop',
       imageUrl:
-          'https://www.pexels.com/photo/yellow-backpack-with-five-assorted-stickers-on-grey-metal-stairway-rail-934673/',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3tGGCeGXCGfviK-komRyAoSjk8D41TrTEvQ&usqp=CAU',
     ),
     Product(
       id: 'c4',
@@ -55,9 +55,20 @@ class ProductList with ChangeNotifier {
       price: 29.99,
       description: 'Product of the new shop',
       imageUrl:
-          'https://www.pexels.com/photo/yellow-backpack-with-five-assorted-stickers-on-grey-metal-stairway-rail-934673/',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGPuNj7H6O0cFbRtGM_yY0xpZ2fPLfmyXr7g&usqp=CAU',
     )
   ];
+
+  List<Product> get items {
+    if (_showFavorites) {
+      return _items.where((prodItem) => prodItem.isFavorite).toList();
+    }
+    return [..._items];
+  }
+
+  Product findById(String id) {
+    return _items.firstWhere((prod) => prod.id == id);
+  }
 
   var _showFavorites = false;
 
@@ -69,16 +80,5 @@ class ProductList with ChangeNotifier {
   void showAll() {
     _showFavorites = false;
     notifyListeners();
-  }
-
-  List<Product> get items {
-    if (_showFavorites) {
-      return _items.where((prodItem) => prodItem.isFavorite).toList();
-    }
-    return [..._items];
-  }
-
-  Product findById(String id) {
-    return _items.firstWhere((prod) => prod.id == id);
   }
 }

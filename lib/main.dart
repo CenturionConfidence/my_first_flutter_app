@@ -4,6 +4,8 @@ import 'package:quiz_app/provider/carts_provider.dart';
 import 'package:quiz_app/provider/order_provider.dart';
 import 'package:quiz_app/provider/products.dart';
 import 'package:quiz_app/screens/Cart_screen.dart';
+import 'package:quiz_app/screens/edit_product_screen.dart';
+import 'package:quiz_app/screens/manage_product_screen.dart';
 import 'package:quiz_app/screens/order_screen.dart';
 
 import '../screens/product_overview_screen.dart';
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
           ProductDetail.routeName: (ctx) => const ProductDetail(),
           CartScreen.routeName: (ctx) => const CartScreen(),
           OrderScreen.routeName: (ctx) => const OrderScreen(),
+          ManageProduct.routeName: (ctx) => const ManageProduct(),
+          EditProductScreen.routeName: (ctx) => const EditProductScreen(),
         },
       ),
     );
