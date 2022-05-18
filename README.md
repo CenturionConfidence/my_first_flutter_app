@@ -1,4 +1,4 @@
-# quiz_app
+# shopping app
 
 A new Flutter project.
 
