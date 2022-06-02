@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/provider/products.dart';
+import 'package:quiz_app/screens/edit_product_screen.dart';
 
 class ManageProductDesign extends StatelessWidget {
   const ManageProductDesign(this.product, {Key? key}) : super(key: key);
@@ -23,14 +24,16 @@ class ManageProductDesign extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/edit-product');
+                    Navigator.of(context).pushNamed(EditProductScreen.routeName,
+                        arguments: product.id);
                   },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
                   color: Theme.of(context).errorColor,
                   onPressed: () {
-                    // Navigator.of(context).pushNamed('/delete-product');
+                    Provider.of<ProductList>(context, listen: false)
+                        .deleteProduct(product.id);
                   },
                 ),
               ],

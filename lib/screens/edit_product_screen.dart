@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../provider/products.dart';
+import 'package:provider/provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -16,8 +17,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
-  
-  
+
   var _editedProduct = Product(
     id: '',
     title: '',
@@ -48,18 +48,21 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
+    final isValid = _form.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+
     _form.currentState!.save();
-    print(_editedProduct.title);
-    print(_editedProduct.price);
-    print(_editedProduct.description);
-    print(_editedProduct.imageUrl);
+    Provider.of<ProductList>(context, listen: false).addProduct(_editedProduct);
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EditProductScreen'),
+        title: const Text('Edit Product'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -77,6 +80,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please provide a valid title';
+                  } else {
+                    return null;
+                  }
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -103,6 +113,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please provide a valid price';
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Invalid price';
+                  }
+                  if (double.parse(value) <= 0) {
+                    return 'Price must be greater than 0';
+                  } else {
+                    return null;
+                  }
+                },
                 onSaved: (value) {
                   _editedProduct = Product(
                     title: _editedProduct.title,
@@ -127,6 +150,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 keyboardType: TextInputType.multiline,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_imageUrlFocusNode);
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please provide a valid description';
+                  }
+                  if (value.length < 10) {
+                    return 'Description should be at least 10 characters';
+                  } else {
+                    return null;
+                  }
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -163,6 +196,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      // initialValue: _initValues['imageUrl'],
                       decoration: const InputDecoration(
                         hintText: 'Enter Image URL',
                       ),
@@ -172,6 +206,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       focusNode: _imageUrlFocusNode,
                       onFieldSubmitted: (_) {
                         _saveForm();
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'image Url cannot be empty';
+                        }
+                        if (!value.startsWith('http') &&
+                            !value.startsWith('https')) {
+                          return 'Invalid Url';
+                        } else {
+                          return null;
+                        }
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
