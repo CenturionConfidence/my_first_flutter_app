@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app/provider/order_provider.dart';
 
 import '../provider/carts_provider.dart';
-import '../design/cart_design.dart' as cartItem;
+import '../widget/cart_design.dart' as cartItem;
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);

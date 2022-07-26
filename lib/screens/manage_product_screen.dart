@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_app/design/manage_product_design.dart';
+import 'package:quiz_app/widget/manage_product_design.dart';
 import 'package:quiz_app/provider/products.dart';
 import 'package:quiz_app/main_drawer.dart';
 import 'package:quiz_app/screens/edit_product_screen.dart';

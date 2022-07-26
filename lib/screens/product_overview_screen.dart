@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_app/design/cart_badge.dart';
+import 'package:quiz_app/widget/cart_badge.dart';
 import 'package:quiz_app/main_drawer.dart';
 import 'package:quiz_app/provider/carts_provider.dart';
-import '../design/product_overview_design.dart';
+import '../widget/product_overview_design.dart';
 import '../provider/products.dart';
 import '../screens/cart_screen.dart';
 

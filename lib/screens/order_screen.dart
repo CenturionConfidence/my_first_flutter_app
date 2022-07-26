@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app/main_drawer.dart';
 
 import '../provider/order_provider.dart' show OrderList;
-import '../design/order_screen_design.dart';
+import '../widget/order_screen_design.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({Key? key}) : super(key: key);
