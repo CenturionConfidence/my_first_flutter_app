@@ -58,8 +58,11 @@ class ProductList with ChangeNotifier {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGPuNj7H6O0cFbRtGM_yY0xpZ2fPLfmyXr7g&usqp=CAU',
     )
   ];
+    
+
 
   List<Product> get items {
+   
     if (_showFavorites) {
       return _items.where((prodItem) => prodItem.isFavorite).toList();
     }

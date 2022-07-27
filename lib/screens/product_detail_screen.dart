@@ -51,7 +51,7 @@ class ProductDetail extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   padding: const EdgeInsets.all(10),
                 ),
               ),
@@ -71,15 +71,6 @@ class ProductDetail extends StatelessWidget {
               softWrap: true,
             ),
           ),
-          const SizedBox(height: 10),
-          // Container(
-          //   padding: const EdgeInsets.symmetric(
-          //     horizontal: 10,
-          //   ),
-          //   child: Text(
-          //     loadedProduct.description,
-          //   ),
-          // ),
         ],
       ),
     );
